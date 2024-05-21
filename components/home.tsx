@@ -233,8 +233,8 @@ const Welcome = React.memo(() => {
   });
 
   return (
-    <SafeAreaView style={{flex: 1, backgroundColor: COLORS.primary}}>
-      <StatusBar backgroundColor={COLORS.primary} />
+    <SafeAreaView style={{flex: 1, backgroundColor: "black"}}>
+      <StatusBar backgroundColor={"black"} />
       <FlatList
         ref={ref}
         onMomentumScrollEnd={updateCurrentSlideIndex}
@@ -390,7 +390,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#FFFFFF', // White background for the welcome card
+    backgroundColor: '#FFFFFF',
     marginHorizontal: 20,
     padding: 20,
     borderRadius: 10, // Rounded corners for the card

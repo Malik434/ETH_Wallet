@@ -1,5 +1,6 @@
 import React, { useCallback } from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity
+ } from 'react-native';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { MaterialIcons } from '@expo/vector-icons';
@@ -23,18 +24,16 @@ const RenderRegister = React.memo(() => {
         <View style={styles.box}>
           <Text style={styles.boxText}>I'm a new user, create a wallet</Text>
           <Text style={styles.boxSubText}>Create a new Wallet</Text>
-          <Button
-            onPress={() => handleNext('Create')}
-            title="Okay, let's get started!"
-          />
-        </View>
-        <View style={styles.box}>
-          <Text style={styles.boxText}>No, I already have a Secret Recovery Phrase</Text>
-          <Text style={styles.boxSubText}>Import your Secret Recovery Phrase</Text>
-          <Button
-            onPress={() => handleNext('Import')}
-            title="Import Wallet"
-          />
+          <TouchableOpacity style={styles.button} onPress={() => handleNext('Create')}>
+            <Text style={styles.buttonText}>Okay, let's get started!</Text>
+          </TouchableOpacity>
+          </View>
+          <View style={styles.box}>
+            <Text style={styles.boxText}>No, I already have a Secret Recovery Phrase</Text>
+            <Text style={styles.boxSubText}>Import your Secret Recovery Phrase</Text>
+            <TouchableOpacity style={styles.button} onPress={() => handleNext('Import')}>
+              <Text style={styles.buttonText}>Import Wallet</Text>
+            </TouchableOpacity>
         </View>
       </View>
     </View>
@@ -55,19 +54,19 @@ const ImportStack = createStackNavigator();
 
 const RegisterStackScreen = React.memo(() => (
   <Register.Navigator screenOptions={{ title: ' ' }}>
-    <Register.Screen name="RegisterScreen" component={RenderRegister} options={{ headerTransparent: false, headerBackTitle: ' ', headerBackImage: () => renderCloseIcon() }} />
+    <Register.Screen name="RegisterScreen" component={RenderRegister} options={{ headerTransparent: false, headerBackTitle: ' '}} />
   </Register.Navigator>
 ))
 const CreateStackScreen = React.memo(() => (
   <CreateStack.Navigator screenOptions={{ title: 'Create Wallet' }}>
     {/* headerShown: false, ...createStackNavigator.ModalPresentationIOS */}
-    <CreateStack.Screen name="Create1" component={CreateScreen} options={{ headerBackTitle: ' ', headerBackImage: () => renderCloseIcon() }} />
+    <CreateStack.Screen name="Create1" component={CreateScreen} options={{ headerBackTitle: ' '}} />
     <CreateStack.Screen name="Create2" component={CreateScreen2} options={{ headerBackTitle: '' }} />
   </CreateStack.Navigator>
 ))
 const ImportStackScreen = React.memo(() => (
   <ImportStack.Navigator screenOptions={{ title: 'Import Wallet' }}>
-    <ImportStack.Screen name="ImportScreen" component={ImportScreen} options={{ headerBackTitle: ' ', headerBackImage: () => renderCloseIcon() }} />
+    <ImportStack.Screen name="ImportScreen" component={ImportScreen} options={{ headerBackTitle: ' ' }} />
   </ImportStack.Navigator>
 ))
 
@@ -115,6 +114,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
+    backgroundColor: 'black', // dark background color
   },
   flex: {
     flex: 5,
@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
   },
   titleText: {
-    color: '#000',
+    color: '#ffffff', // white color for better contrast on dark background
     fontSize: 25,
     fontWeight: '500',
   },
@@ -136,21 +136,38 @@ const styles = StyleSheet.create({
     height: 185,
     width: 280,
     borderWidth: 1,
-    borderColor: 'darkgray',
+    borderColor: '#ffffff', // white border for better contrast on dark background
     borderRadius: 8,
+    backgroundColor: '#003262', // slightly lighter dark color for the box
   },
   boxText: {
     fontSize: 19,
     fontWeight: '500',
-    color: '#636363',
+    color: '#ffffff', // white color for better contrast on dark background
   },
   boxSubText: {
     paddingVertical: 13,
     fontSize: 16,
     textAlign: 'center',
-    color: '#828282',
+    color: '#a0a0a0', // lighter gray color for better contrast on dark background
   },
   closeIcon: {
+    
     paddingLeft: 10,
+    color: '#ffffff', // white color for better contrast on dark background
+  },
+  button: {
+    backgroundColor: '#fff',
+    padding: 10,
+    borderRadius: 5,
+    alignItems: 'center',
+    marginTop: 10,
+  },
+  buttonText: {
+    fontWeight: 'bold',
+    fontSize: 15,
+  },
+  closeIconContainer: {
+    backgroundColor: '#000000',
   },
 });
